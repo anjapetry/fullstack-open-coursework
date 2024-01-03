@@ -6,6 +6,7 @@ const App = () => {
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
+  const total = good + neutral + bad;
 
   const handleClick = (feedback) => {
     const handleFeedBack = () => {
@@ -21,18 +22,21 @@ const App = () => {
 
   return (
     <main>
-      <h1>give feedback</h1>
+      <h1>Give Feedback</h1>
       <div>
       <button onClick={handleClick('good')}>good</button>
       <button onClick={handleClick('neutral') }>neutral</button>
       <button onClick={handleClick('bad') }>bad</button>
       </div>
 
-      <h2>statistics</h2>
+      <h2>Statistics</h2>
       <div>
         <p>good {good}</p>
         <p>neutral {neutral}</p>
         <p>bad {bad}</p>
+        <p>all {total}</p>
+        <p>average {(good - bad) / total}</p>
+        <p>positive {good / total * 100}%</p>
       </div>
 
     </main>
