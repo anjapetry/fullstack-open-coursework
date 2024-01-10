@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
 const App = () => {
   const anecdotes = [
@@ -10,9 +10,16 @@ const App = () => {
     'Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.',
     'Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients.',
     'The only way to go fast, is to go well.'
-  ]
+  ];
 
-  const [selected, setSelected] = useState(0)
+  const [selected, setSelected] = useState(0);
+  const [votes, setVotes] = useState(Array(anecdotes.length).fill(0));
+
+  const handleVotes = () => {
+    const copy = [...votes];
+    copy[selected] += 1;
+    setVotes(copy);
+  }
 
   const handleClick = () => {
     const random = Math.floor(Math.random() * anecdotes.length);
@@ -22,9 +29,8 @@ const App = () => {
   return (
     <div>
       {anecdotes[selected]}
-      <br />
-      <br />
-      <p>has 0 votes</p>
+      <p>has {votes[selected]} votes</p>
+      <button onClick={handleVotes}>vote</button>
       <button onClick={handleClick}>next anecdote</button>
     </div>
   )
